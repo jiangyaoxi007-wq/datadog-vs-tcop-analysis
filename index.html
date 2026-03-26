@@ -61,6 +61,41 @@
         .tag-strength { display: inline-block; font-size: 10px; font-weight: 700; padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
         .dd .tag-strength { background: #6366f1; color: white; }
         .tc .tag-strength { background: #0ea5e9; color: white; }
+
+        /* 功能架构图 */
+        .func-map-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+        @media (max-width: 768px) { .func-map-grid { grid-template-columns: 1fr; } }
+        .func-map-card { border-radius: 10px; overflow: hidden; border: 1px solid #e2e8f0; }
+        .func-map-header { padding: 10px 14px 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.05em; display: flex; align-items: center; gap: 7px; }
+        .func-map-header.dd { background: #eef0fd; color: #4338ca; border-bottom: 1px solid #c7d2fe; }
+        .func-map-header.tc { background: #e0f2fe; color: #0284c7; border-bottom: 1px solid #bae6fd; }
+        .func-map-header .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+        .func-map-header.dd .dot { background: #6366f1; }
+        .func-map-header.tc .dot { background: #0ea5e9; }
+        .func-map-body { padding: 16px 14px 14px; background: #fafafa; }
+        .func-map-root { display: flex; align-items: flex-start; gap: 0; }
+        .func-map-center { display: flex; flex-direction: column; align-items: center; }
+        .func-map-root-label { font-size: 12px; font-weight: 800; padding: 6px 12px; border-radius: 20px; color: white; white-space: nowrap; writing-mode: horizontal-tb; }
+        .func-map-root-label.dd { background: linear-gradient(135deg, #6366f1, #4f46e5); }
+        .func-map-root-label.tc { background: linear-gradient(135deg, #0ea5e9, #0284c7); }
+        .func-map-connector-v { width: 2px; background: #cbd5e1; flex-grow: 0; height: 12px; }
+        .func-map-domains { display: flex; flex-direction: column; gap: 6px; padding-left: 10px; flex: 1; position: relative; }
+        .func-map-domains::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 2px; background: #cbd5e1; }
+        .func-map-domain-row { display: flex; align-items: flex-start; gap: 0; }
+        .func-map-domain-row::before { content: ''; width: 10px; height: 2px; background: #cbd5e1; flex-shrink: 0; margin-top: 13px; }
+        .func-map-domain { }
+        .func-map-domain-label { font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: 5px; white-space: nowrap; cursor: default; }
+        .func-map-domain-label.dd { background: #e0e7ff; color: #4338ca; }
+        .func-map-domain-label.tc { background: #bae6fd; color: #0369a1; }
+        .func-map-subs { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 5px; padding-left: 4px; }
+        .func-map-sub { font-size: 10px; padding: 2px 7px; border-radius: 3px; white-space: nowrap; }
+        .func-map-sub.dd { background: #f5f3ff; color: #5b21b6; border: 1px solid #ddd6fe; }
+        .func-map-sub.tc { background: #f0f9ff; color: #075985; border: 1px solid #bae6fd; }
+        .func-map-sub.star { font-weight: 700; }
+        .func-map-sub.star.dd { background: #6366f1; color: white; border-color: #6366f1; }
+        .func-map-sub.star.tc { background: #0ea5e9; color: white; border-color: #0ea5e9; }
+        .func-map-note { font-size: 11.5px; color: #64748b; padding: 8px 14px 10px; background: white; border-top: 1px solid #f1f5f9; line-height: 1.55; }
+        .func-map-label { font-size: 10px; font-weight: 600; letter-spacing: 0.04em; color: #94a3b8; text-transform: uppercase; margin-bottom: 8px; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -84,6 +119,198 @@
             <span class="text-indigo-600">①</span> 战略层 (Strategy) &amp; 范围层 (Scope)
         </h2>
         <p class="text-xs text-slate-400 mb-4">聚焦：产品定位 · 商业模式 · 目标用户 · 核心功能边界</p>
+
+        <!-- ★ 功能架构图（每产品唯一一张）-->
+        <p class="func-map-label">功能架构图 · Function Map</p>
+        <div class="func-map-grid">
+
+            <!-- Datadog 功能架构图 -->
+            <div class="func-map-card">
+                <div class="func-map-header dd">
+                    <span class="dot"></span>🐶 Datadog — 功能架构图
+                </div>
+                <div class="func-map-body">
+                    <div class="func-map-root">
+                        <div class="func-map-center">
+                            <div class="func-map-root-label dd">Datadog</div>
+                            <div class="func-map-connector-v"></div>
+                        </div>
+                        <div class="func-map-domains">
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">基础设施监控</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd">主机监控</span>
+                                        <span class="func-map-sub dd star">容器监控 ★</span>
+                                        <span class="func-map-sub dd">Host Map</span>
+                                        <span class="func-map-sub dd">云资源监控</span>
+                                        <span class="func-map-sub dd">网络监控</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">APM &amp; 链路追踪</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd star">分布式追踪 ★</span>
+                                        <span class="func-map-sub dd">服务地图</span>
+                                        <span class="func-map-sub dd">性能剖析</span>
+                                        <span class="func-map-sub dd">错误追踪</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">日志管理</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd">日志采集</span>
+                                        <span class="func-map-sub dd star">日志检索 ★</span>
+                                        <span class="func-map-sub dd">Log Analytics</span>
+                                        <span class="func-map-sub dd">归档存储</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">监控告警</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd">Monitor 策略</span>
+                                        <span class="func-map-sub dd star">智能告警 ★</span>
+                                        <span class="func-map-sub dd">SLO 管理</span>
+                                        <span class="func-map-sub dd">通知路由</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">前端 &amp; 合成监控</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd">RUM 用户监控</span>
+                                        <span class="func-map-sub dd">Synthetics</span>
+                                        <span class="func-map-sub dd">会话回放</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">安全监控 SIEM</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd star">威胁检测 ★</span>
+                                        <span class="func-map-sub dd">合规审计</span>
+                                        <span class="func-map-sub dd">漏洞管理</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label dd">开放生态</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub dd star">600+ 集成 ★</span>
+                                        <span class="func-map-sub dd">自定义 Dashboard</span>
+                                        <span class="func-map-sub dd">API &amp; Terraform</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="func-map-note">📌 Datadog 以「基础设施→APM→日志→告警→安全」为主线，构建全栈可观测性+安全一体化平台。差异化能力在于跨信号的数据关联（Correlation）和 600+ 生态集成，覆盖多云/混合云全场景。</div>
+            </div>
+
+            <!-- TCOP 功能架构图 -->
+            <div class="func-map-card">
+                <div class="func-map-header tc">
+                    <span class="dot"></span>☁️ 腾讯云 TCOP — 功能架构图
+                </div>
+                <div class="func-map-body">
+                    <div class="func-map-root">
+                        <div class="func-map-center">
+                            <div class="func-map-root-label tc">TCOP</div>
+                            <div class="func-map-connector-v"></div>
+                        </div>
+                        <div class="func-map-domains">
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">云监控</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc star">云产品自动接入 ★</span>
+                                        <span class="func-map-sub tc">指标监控</span>
+                                        <span class="func-map-sub tc">Dashboard</span>
+                                        <span class="func-map-sub tc">驾驶舱</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">APM 链路追踪</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc">分布式 Trace</span>
+                                        <span class="func-map-sub tc">服务拓扑</span>
+                                        <span class="func-map-sub tc">慢查询分析</span>
+                                        <span class="func-map-sub tc">性能洞察</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">CLS 日志服务</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc">日志采集</span>
+                                        <span class="func-map-sub tc star">日志检索 ★</span>
+                                        <span class="func-map-sub tc">日志分析</span>
+                                        <span class="func-map-sub tc">数据加工</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">告警管理</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc">告警策略</span>
+                                        <span class="func-map-sub tc">通知模板</span>
+                                        <span class="func-map-sub tc">告警历史</span>
+                                        <span class="func-map-sub tc">屏蔽规则</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">Prometheus 托管</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc star">托管实例 ★</span>
+                                        <span class="func-map-sub tc">集成中心</span>
+                                        <span class="func-map-sub tc">Recording Rule</span>
+                                        <span class="func-map-sub tc">远程写入</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">Grafana 托管</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc star">预置大盘 ★</span>
+                                        <span class="func-map-sub tc">自定义面板</span>
+                                        <span class="func-map-sub tc">多数据源</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="func-map-domain-row">
+                                <div class="func-map-domain">
+                                    <div class="func-map-domain-label tc">AI 智能分析</div>
+                                    <div class="func-map-subs">
+                                        <span class="func-map-sub tc star">自然语言查询 ★</span>
+                                        <span class="func-map-sub tc">异常检测</span>
+                                        <span class="func-map-sub tc">根因分析</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="func-map-note">📌 TCOP 以「云监控→APM→日志→告警」为核心，重点差异化在于云产品零配置自动接入和 Prometheus/Grafana 托管服务，以及内置 AI 智能分析工作台，强化腾讯云生态一体化体验。</div>
+            </div>
+
+        </div>
 
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
